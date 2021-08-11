@@ -17,22 +17,23 @@ Creates a small Active Directory environment to play with. This will create 3 se
 
 Check terraform.tfvars for the configurable settings. Besides that, the main.tf will also enforce the following:
 
--) Every VM is prefixed with the label you set in terraform.tfvars (ressource_prefix).
--) The Active Directory domain is installed with defaults automatically. A single DC is created and always has the name "LABEL"-DC.
--) All member servers are joined automatically. You can configure the number of servers that are created by changing the "node_count" variable in terraform.tfvars. Default is 2.
--) All servers run Server 2019.
--) Local Windows firewall will be disabled on ALL vms.
--) NSG will allow RDP from ANY IP into the subnet. Make sure to change this.
+- Every VM is prefixed with the label you set in terraform.tfvars (ressource_prefix).
+- The Active Directory domain is installed with defaults automatically. A single DC is created and always has the name "LABEL"-DC.
+- All member servers are joined automatically. You can configure the number of servers that are created by changing the "node_count" variable in terraform.tfvars. Default is 2.
+- All servers run Server 2019.
+- Local Windows firewall will be disabled on ALL vms.
+- NSG will allow RDP from ANY IP into the subnet. Make sure to change this.
 
 ## Credentials
 
 The credentials for the default domain admin account are:
 
-**Username:** adminuser
+**Username:** adminuser<br>
 **Password:** P@ssw0rd123!!!
 
 The credentials for the default local admin account are:
 
-**Username:** adminuser
+**Username:** adminuser<br>
 **Password:** P@ssw0rd123!
+
 
