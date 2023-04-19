@@ -63,7 +63,7 @@ resource "azurerm_network_interface" "windows_nic" {
   ip_configuration {
     name      = "internal"
     subnet_id = azurerm_subnet.windows_subnet.id
-    private_ip_address_allocation = "static"
+    private_ip_address_allocation = "Static"
     private_ip_address            = cidrhost(var.node_address_prefix, 100+count.index)
     public_ip_address_id          = element(azurerm_public_ip.windows_public_ip.*.id, count.index)
   }
@@ -110,7 +110,7 @@ resource "azurerm_network_interface" "dc_nic" {
     name      = "internal"
     subnet_id = azurerm_subnet.windows_subnet.id
     #private_ip_address_allocation = "Dynamic"
-    private_ip_address_allocation = "static"
+    private_ip_address_allocation = "Static"
     private_ip_address            = cidrhost(var.node_address_prefix, 10)
     public_ip_address_id          = azurerm_public_ip.dc_public_ip.id
   }
@@ -127,7 +127,7 @@ resource "azurerm_network_interface" "ca_nic" {
     name      = "internal"
     subnet_id = azurerm_subnet.windows_subnet.id
     #private_ip_address_allocation = "Dynamic"
-    private_ip_address_allocation = "static"
+    private_ip_address_allocation = "Static"
     private_ip_address            = cidrhost(var.node_address_prefix, 20)
     public_ip_address_id          = azurerm_public_ip.ca_public_ip.id
   }
@@ -144,7 +144,7 @@ resource "azurerm_network_interface" "linux_nic" {
     name      = "internal"
     subnet_id = azurerm_subnet.windows_subnet.id
     #private_ip_address_allocation = "Dynamic"
-    private_ip_address_allocation = "static"
+    private_ip_address_allocation = "Static"
     private_ip_address            = cidrhost(var.node_address_prefix, 30)
     public_ip_address_id          = azurerm_public_ip.linux_public_ip.id
   }
@@ -159,7 +159,7 @@ resource "azurerm_network_security_group" "lab_nsg" {
 
   # Security rule can also be defined with resource azurerm_network_security_rule, here just defining it inline.
   security_rule {
-    name                       = "SSH Inbound"
+    name                       = "SSHInbound"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
@@ -170,7 +170,7 @@ resource "azurerm_network_security_group" "lab_nsg" {
     destination_address_prefix = "*"
   }
     security_rule {
-    name                       = "RDP Inbound"
+    name                       = "RDPInbound"
     priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
@@ -224,7 +224,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
   source_image_reference {
     publisher = "MicrosoftWindowsDesktop"
     offer     = "windows-10"
-    sku       = "21h2-ent"
+    sku       = "win10-22h2-ent"
     version   = "latest"
   }
 
@@ -233,7 +233,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
   tags = var.tags
 }
 
-#VM object for the DC - contrary to the member server, this one is static so there will be only a single DC
+#VM object for the DC - contrary to the member server, this one is Static so there will be only a single DC
 resource "azurerm_windows_virtual_machine" "windows_vm_domaincontroller" {
   name  = "${var.resource_prefix}-DC"
   location              = azurerm_resource_group.windows_rg.location
@@ -304,7 +304,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "22.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
