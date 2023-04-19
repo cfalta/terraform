@@ -2,10 +2,10 @@
 
 Creates a lab to play with attacks on Active Directory and/or Active Directory Certificate Services. This will create the following 5 VMs by default:
 
- - 1 DC (Server 2019)
- - 1 Member Server for ADCS (Server 2019)
- - 2 Member Clients (Windows 10 20H2)
- - 1 Ubuntu Server 18.04
+ - 1 DC (Server 2022)
+ - 1 Member Server for ADCS (Server 2022)
+ - 2 Member Clients (Windows 10 21H2)
+ - 1 Ubuntu Server 22.04
 
 **Warning:** this will create a lab environment, which intenionally contains unsafe defaults like disabling firewalls or using insecure passwords. Do NOT use in production.
 
@@ -26,7 +26,7 @@ Check terraform.tfvars for the configurable settings. Besides that, the main.tf 
 - The Active Directory domain is installed with defaults automatically. A single DC is created and always has the name "LABEL"-DC.
 - A member server destined to become the CA will be deployed under the name "LABEL"-CA. ADCS is NOT installed automatically.
 - All member servers and clients are joined automatically. You can configure the number of Windows 10 clients that are created by changing the "node_count" variable in terraform.tfvars. Default is 2.
-- All Windows servers run Server 2019, all Clients run Windows 10 20H2.
+- All Windows servers run Server 2022, all Clients run Windows 10 21H2.
 - Local Windows firewall will be disabled on ALL VMs.
 - NSG will allow RDP/SSH from ANY IP into the subnet. Make sure to change this.
 

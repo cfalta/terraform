@@ -224,7 +224,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
   source_image_reference {
     publisher = "MicrosoftWindowsDesktop"
     offer     = "windows-10"
-    sku       = "20h2-ent"
+    sku       = "21h2-ent"
     version   = "latest"
   }
 
@@ -251,7 +251,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm_domaincontroller" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
+    sku       = "2022-Datacenter"
     version   = "latest"
   }
 
@@ -276,7 +276,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm_ca" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
+    sku       = "2022-Datacenter"
     version   = "latest"
   }
 
@@ -304,7 +304,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    sku       = "22.04-LTS"
     version   = "latest"
   }
 
