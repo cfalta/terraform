@@ -72,17 +72,17 @@ resource "azurerm_network_security_group" "lab_nsg" {
   resource_group_name = azurerm_resource_group.server_rg.name
 
   # Security rule can also be defined with resource azurerm_network_security_rule, here just defining it inline.
-  security_rule {
-    name                       = "SSHInbound"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
+  #security_rule {
+  #  name                       = "SSHInbound"
+  #  priority                   = 100
+  #  direction                  = "Inbound"
+  #  access                     = "Allow"
+  #  protocol                   = "Tcp"
+  #  source_port_range          = "*"
+  #  destination_port_range     = "22"
+  #  source_address_prefix      = "*"
+  #  destination_address_prefix = "*"
+  #}
   tags = var.tags
 
 }
@@ -147,7 +147,7 @@ resource "azurerm_virtual_machine_extension" "deploy_tailscale" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -; curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list; sudo apt-get update; sudo apt-get install tailscale -y; sudo sysctl -w net.ipv4.ip_forward=1; sudo tailscale up --authkey ${var.tailscale_authkey} --advertise-exit-node"
+        "commandToExecute": "curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -; curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list; sudo apt-get update; sudo apt-get install tailscale -y; sudo sysctl -w net.ipv4.ip_forward=1; sudo tailscale up --authkey ${var.tailscale_authkey} --advertise-exit-node --ssh"
     }
 SETTINGS
 }
