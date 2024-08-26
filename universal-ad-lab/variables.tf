@@ -37,7 +37,15 @@ variable "vmsize" {
 
 # how many vms to create
 
-variable "node_count" {
+variable "node_count_windows_client" {
+  type = number
+}
+
+variable "node_count_windows_server" {
+  type = number
+}
+
+variable "node_count_linux_server" {
   type = number
 }
 
@@ -82,5 +90,11 @@ variable "domadm_pwd" {
 }
 
 variable "domadm_user" {
+  type = string
+}
+
+# tailscale auth key
+
+variable "tailscale_authkey" {
   type = string
 }

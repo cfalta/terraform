@@ -5,6 +5,8 @@ A collection of terraform script to create different labs in Azure.
 
 That said, here's the list:
 
+- **universal-ad-lab:** sets up a universal lab including a DC, a CA, a configurable number of member server, member clients and linux server. Also sets up a tailscale subnet router so you can access the whole lab via tailscale.
+- **tailscale-exit-node:** takes a tailscale auth key as input and creates an Ubuntu server that works as tailscale edge node. Also enables tailscale ssh auth.
 - **adcs-lab-2019:** sets up 2 Windows server 2019 and a Windows 10 client. A DC, a CA and a member client.
 - **ad-lab-2019:** sets up 3 Windows server 2019. A DC, and two additional member server.
 - **ad-lab-2019-with-vm-domainlabel:** same as above, just registers the VM name also as a DNS label for the VM. So you can always RDP to the same DNS name instead of using an IP.

@@ -1,6 +1,8 @@
 resource_prefix = "adlab"
 node_location   = "westeurope"
-node_count      = 2
+node_count_linux_server = 1
+node_count_windows_client = 1
+node_count_windows_server = 1
 
 node_address_space = ["10.20.0.0/16"]
 node_address_prefix = "10.20.20.0/24"
@@ -18,5 +20,5 @@ domadm_user = "domadm"
 domadm_pwd = "P@ssw0rd123!!!"
 
 tags = {
-  "Environment" = "dev"
+  "Environment" = "lab"
 }
