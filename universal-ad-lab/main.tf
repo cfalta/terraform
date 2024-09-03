@@ -620,7 +620,7 @@ resource "azurerm_virtual_machine_extension" "deploy_tailscale" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -; curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list; sudo apt-get update; sudo apt-get install tailscale -y; sudo sysctl -w net.ipv4.ip_forward=1; sudo tailscale up --authkey ${var.tailscale_authkey} --advertise-routes=${var.node_address_prefix}"
+        "commandToExecute": "curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -; curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list; sudo apt-get update; sudo apt-get install tailscale -y; sudo sysctl -w net.ipv4.ip_forward=1; echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf; sudo tailscale up --authkey ${var.tailscale_authkey} --advertise-routes=${var.node_address_prefix}"
     }
 SETTINGS
 }
